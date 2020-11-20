@@ -1,7 +1,0 @@
-# Rime user dictionary
-#@/db_name	terra_pinyin
-#@/db_type	userdb
-#@/rime_version	1.6.1
-#@/tick	1
-#@/user_id	4b6bfa65-3f6c-4ae2-8e4a-1506f1bc7007
-ao4 nao3 	懊惱	c=1 d=1 t=1
