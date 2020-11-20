@@ -1,0 +1,279 @@
+{
+  "configs": [
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "新加坡节点1",
+      "server": "sg1.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "新加坡节点2",
+      "server": "sg2.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "新加坡节点3",
+      "server": "sg3.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "新加坡节点4",
+      "server": "sg4.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "新加坡节点5",
+      "server": "sg5.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "新加坡节点6",
+      "server": "sg6.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "新加坡节点7",
+      "server": "sg7.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "中转香港节点1",
+      "server": "cn2hk1.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "中转香港节点2",
+      "server": "cn2hk2.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "中转香港节点3",
+      "server": "cn2hk3.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "中转新加坡节点1",
+      "server": "cn2sg1.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "中转新加坡节点2",
+      "server": "cn2sg2.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "中转新加坡节点3",
+      "server": "cn2sg3.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "中转美国节点1",
+      "server": "cn2usa1.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "中转美国节点2",
+      "server": "cn2usa2.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "中转美国节点3",
+      "server": "cn2usa3.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "美国节点1",
+      "server": "usa1.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "美国节点2",
+      "server": "usa2.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "美国节点3",
+      "server": "usa3.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "美国节点4",
+      "server": "usa4.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "美国节点5",
+      "server": "usa5.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "美国节点6",
+      "server": "usa6.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "美国节点7",
+      "server": "usa7.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "美国下载节点1",
+      "server": "usad1.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "美国下载节点2",
+      "server": "usad2.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "香港节点1",
+      "server": "hk1.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "香港节点2",
+      "server": "hk2.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "香港节点3",
+      "server": "hk3.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "香港节点4",
+      "server": "hk4.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "香港节点5",
+      "server": "hk5.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "香港节点6",
+      "server": "hk6.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "香港节点7",
+      "server": "hk7.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "日本节点1",
+      "server": "jp1.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "日本节点2",
+      "server": "jp2.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "日本节点3",
+      "server": "jp3.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "日本节点4",
+      "server": "jp4.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "日本节点5",
+      "server": "jp5.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "日本下载节点1",
+      "server": "jpd1.fatiaoyun.vip",
+      "server_port": 35970
+    },
+    {
+      "method": "aes-256-cfb",
+      "password": "0y6h6Vl1Wi",
+      "remarks": "日本下载节点2",
+      "server": "jpd2.fatiaoyun.vip",
+      "server_port": 35970
+    }
+  ],
+  "localPort": 1080,
+  "shareOverLan": false
+}
