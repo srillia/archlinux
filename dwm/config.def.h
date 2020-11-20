@@ -45,9 +45,11 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class      instance       title       tags mask     isfloating   monitor */
+	{ "Gimp",     NULL,          NULL,       0,            1,           -1 },
+	{ "Firefox",  NULL,          NULL,       1 << 8,       0,           -1 },
+	{ "Wine",     "tim.exe",     NULL,       0,            1,           -1 },
+	{ "Wine",     "wechat.exe",  NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -93,8 +95,6 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *roficmd[]    = { "rofi", "-theme", "solarized", "-show", "drun", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
-
-#include "selfrestart.c"
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -152,7 +152,6 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-    { MODKEY|ShiftMask,             XK_r,      self_restart,   {0} },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
@@ -173,3 +172,4 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
+
