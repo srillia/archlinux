@@ -146,6 +146,7 @@ export IDENTIFIER="unicode"
 #. "$DIR/dwmbar-functions/dwm_ccurse.sh"
 . "$DIR/dwmbar-functions/dwm_date.sh"
 . "$DIR/dwmbar-functions/net_type.sh"
+. "$DIR/dwmbar-functions/dwm_mem_free.sh"
 
 # get_bytes
 
@@ -155,7 +156,7 @@ export IDENTIFIER="unicode"
 
 # xsetroot -name "  💿 $(print_mem)M ⬇️ $vel_recv ⬆️ $vel_trans $(dwm_alsa) [ $(print_bat) ]$(show_record) $(print_date) "
 # xsetroot -name "[$(print_net_type)] $(dwm_alsa)| $(print_bat) | $(print_temp) | $(dwm_date) |     "
-xsetroot -name "| $(print_temp) | $(dwm_date) |"
+xsetroot -name "| $(dwm_mem_free) | $(dwm_date) |"
 
 # Update old values to perform new calculations
 #old_received_bytes=$received_bytes
