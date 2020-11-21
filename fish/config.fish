@@ -1,9 +1,4 @@
 
-set GTK_IM_MODULE ibus
-set XMODIFIERS @im=ibus
-set QT_IM_MODULE ibus
-
-
 alias dwmr 'cd /home/srillia/mine/dwm && rm -rf config.h && sudo make install && rm -rf config.h *.o'
 
 
