@@ -103,6 +103,7 @@ map <silent> <leader>t :NERDTreeToggle<CR>
 
 
 noremap <silent> <leader>r :source /home/srillia/.vimrc<CR>
+noremap <silent> <leader>w :w !sudo tee %<CR>
 " 设置位移
 
 
