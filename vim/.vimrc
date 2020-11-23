@@ -16,6 +16,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " vim-autoformat
 Plug 'Chiel92/vim-autoformat'
+
+"auto-pairs
 Plug 'jiangmiao/auto-pairs'
 
 " nerdtree
@@ -135,7 +137,7 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 
 
-" cscope auto add database
+" cscope auto add database   cscope -Rbq, ctags -R .
 function! LoadCscope()
   let db = findfile("cscope.out", ".;")
   if (!empty(db))
@@ -149,6 +151,9 @@ function! LoadCscope()
   endif
 endfunction
 au BufEnter /* call LoadCscope()
+
+map <silent> <F5> :!cscope -Rbq<CR>:cs reset<CR><CR>
+
 " cscope 快捷键
 nmap <SPACE>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <SPACE>g :cs find g <C-R>=expand("<cword>")<CR><CR>
