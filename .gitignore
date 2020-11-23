@@ -4,3 +4,4 @@ dwm/*.o
 dwm/.ccls-cache/
 dwm/*.orig
 dwm/*.rej
+*.out

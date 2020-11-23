@@ -62,7 +62,7 @@ set wildmenu
 set wildmode=longest:list,full
 set wildignore=*.dll,*.exe,*.jpg,*.gif,*.png
 set ignorecase
-set smartcase
+" set smartcase
 
 "=======设置代码格式化规则
 set autoindent
@@ -71,8 +71,11 @@ set tabstop=2       " tab width
 set softtabstop=2   " backspace
 set shiftwidth=4    " indent width
 set expandtab       " expand tab to space
-set scrolloff=7
+set scrolloff=20
 
+
+set shortmess=a
+set cmdheight=2
 
 
 " 鼠标指针样式 和终端有关
@@ -117,13 +120,41 @@ tnoremap   <silent>   <F8>   <C-\><C-n>:FloatermToggle<CR>
 
 
 
-"coc 配置 use <tab> for trigger completion and navigate to the next complete item
-"function! s:check_back_space() abort
-"  let col = col('.') - 1
-"  return !col || getline('.')[col - 1]  =~ '\s'
-"endfunction
-"
-"inoremap <silent><expr> <Tab>
-"      \ pumvisible() ? "\<C-n>" :
-"      \ <SID>check_back_space() ? "\<Tab>" :
-"      \ coc#refresh()
+" coc 配置 use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+
+
+" cscope auto add database
+function! LoadCscope()
+  let db = findfile("cscope.out", ".;")
+  if (!empty(db))
+    let path = strpart(db, 0, match(db, "/cscope.out$"))
+    set nocscopeverbose " suppress 'duplicate connection' error
+    exe "cs add " . db . " " . path
+    set cscopeverbose
+  " else add the database pointed to by environment variable 
+  elseif $CSCOPE_DB != "" 
+    cs add $CSCOPE_DB
+  endif
+endfunction
+au BufEnter /* call LoadCscope()
+" cscope 快捷键
+nmap <SPACE>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <SPACE>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <SPACE>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <SPACE>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <SPACE>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <SPACE>f :cs find f <C-R>=expand("<cword>")<CR><CR>
+nmap <SPACE>i :cs find i <C-R>=expand("<cword>")<CR><CR>
+nmap <SPACE>d :cs find d <C-R>=expand("<cword>")<CR><CR>
