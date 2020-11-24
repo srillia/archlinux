@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =4
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/srillia/.vim'
+let g:netrw_dirhist_5='/home/srillia/mine/vim/.vim/plugged/vimspector'
 let g:netrw_dirhist_4='/home/srillia/.SpaceVim'
 let g:netrw_dirhist_3='/home/srillia/.vim'
 let g:netrw_dirhist_2='/home/srillia/WebstormProjects/gaad-web/node_modules/signal-exit'
@@ -8,5 +10,3 @@ let g:netrw_dirhist_0='/home/srillia/mine/vim'
 let g:netrw_dirhist_9='/home/srillia/mine/fatiao'
 let g:netrw_dirhist_8='/home/srillia/Downloads/fontconfig/fontconfig-ultimate-master/doc/fontconfig-infinality-ultimate/fontconfig-user/conf.d'
 let g:netrw_dirhist_7='/home/srillia/App'
-let g:netrw_dirhist_6='/home/srillia/.config/fontconfig'
-let g:netrw_dirhist_5='/etc/fonts/conf.d'
