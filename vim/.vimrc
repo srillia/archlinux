@@ -1,6 +1,6 @@
 "Specify Specify a directory for plugins
-" " - For Neovim: stdpath('data') . '/plugged'
-" " - Avoid using standard Vim directory names like 'plugin'
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
 " vim-go
@@ -32,7 +32,10 @@ Plug 'voldikss/vim-floaterm'
 Plug 'morhetz/gruvbox'
 
 " nerdcommenter
-Plug 'scrooloose/nerdcommenter'
+" Plug 'scrooloose/nerdcommenter'
+
+" vim-commentary
+Plug 'tpope/vim-commentary'
 
 " undotree
 Plug 'mbbill/undotree'
@@ -41,6 +44,8 @@ Plug 'mbbill/undotree'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 
 " markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
 
@@ -53,6 +58,21 @@ Plug 'puremourning/vimspector'
 " On-demand lazy load
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!']  }
 
+" Taglist
+Plug 'liuchengxu/vista.vim'
+
+" vim-maximizer
+Plug 'szw/vim-maximizer'
+
+" surround
+Plug 'tpope/vim-surround' " type yskw' to wrap the word with '' or type cs'` to change 'word' to `word`
+Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp
+
+" vim-snippets
+Plug 'honza/vim-snippets'
+
+" lightline
+Plug 'itchyny/lightline.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -76,13 +96,19 @@ set ignorecase
 " set smartcase
 
 "设置代码格式化规则
+set cindent
 set autoindent
 set smartindent     " indent when
-set tabstop=2       " tab width
-set softtabstop=2   " backspace
+set tabstop=4       " tab width
+set softtabstop=4   " backspace
 set shiftwidth=4    " indent width
 set expandtab       " expand tab to space
+
+
+autocmd FileType json,sh setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+
 set scrolloff=20
+set pastetoggle=<F2>
 
 " 鼠标指针样式 和终端有关
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
@@ -91,23 +117,102 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 " self custom shortcuts
 noremap <silent> <leader>r :source /home/srillia/.vimrc<CR>
 noremap <silent> <leader>w :w !sudo tee %<CR>
+noremap <silent> <leader>y  "+y
+noremap <silent> <leader>p  "+p
+noremap <silent> <leader><leader>  :noh<CR>
+noremap <leader>fl  :r !figlet<SPACE>
+
+" autoformat
+noremap <silent> <leader>fm  :Autoformat<CR>
+
+" This selects the next closest text object.
+map <SPACE> <Plug>(wildfire-fuel)
+
+" This selects the previous closest text object.
+vmap <C-SPACE> <Plug>(wildfire-water)
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" nvim
+let g:ruby_host_prog = '/home/srillia/.gem/ruby/2.7.0/bin/neovim-ruby-host'
+
+
+" vimspector
+let g:vimspector_enable_mappings = 'HUMAN'
+" 调试c++ 需要先安装gdb,先编译 g++ foo.cpp -ggdb -o foo
+nnoremap <leader>dd :call vimspector#Launch()<CR>
+nnoremap <leader>de :VimspectorReset<CR>
+
+"noremap <silent> <leader>dvs :call system('cp ~/.config/nvim/.vimspector.json .')<CR>
+nmap <F1> :CocCommand java.debug.vimspector.start<CR>
+
+
+" vim-maximizer
+nnoremap <silent> <leader>m :MaximizerToggle<CR>
+
+
+" wildfire
+nmap <leader>s <Plug>(wildfire-quick-select)
+
+" md preview
+
+nmap <silent> <leader>mp :MarkdownPreview<CR>
+
+
+" vista
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+
+set statusline+=%{NearestMethodOrFunction()}
+
+" By default vista.vim never run if you don't call it explicitly.
+"
+" If you want to show the nearest function in your statusline automatically,
+" you can add the following line to your vimrc
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
+" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
+" let g:vista#renderer#enable_icon = 1
+
+" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+" let g:vista#renderer#icons = {
+" \   "function": "\uf794",
+" \   "variable": "\uf71b",
+" \  }
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
+nnoremap <silent><leader>tv :Vista!!<CR>
+nnoremap <silent><leader>tf :Vista finder!<CR>
+
+
+" lightline
+" let g:lightline = {
+"       \ 'colorscheme': 'wombat',
+"       \ 'active': {
+"       \   'left': [ [ 'mode', 'paste' ],
+"       \             [ 'readonly', 'filename', 'modified', 'method' ] ]
+"       \ },
+"       \ 'component_function': {
+"       \   'method': 'NearestMethodOrFunction'
+"       \ },
+"       \ }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""      grovbox    """"""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 colorscheme gruvbox
 set background=dark    " 暗色系
 " set background=light   " 亮色系
+let g:airline_theme = 'airline'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""     airline    """"""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#formatter = 'default'
+" let g:airline_theme='gruvbox'
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#left_sep = ' '
+" let g:airline#extensions#tabline#left_alt_sep = '|'
+" let g:airline#extensions#tabline#formatter = 'default'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -121,44 +226,44 @@ nnoremap  <leader>g :Grep<SPACE>
 """""""""""""""""""""""""""""""""     nerdtree    """"""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 开启项目目录
-map <silent> <leader>t :NERDTreeToggle<CR>
+map <silent> <leader>tt :NERDTreeToggle<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""        fzf      """"""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-noremap <leader>f :FZF<CR>
+noremap <leader>ff :FZF<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""  nerdcommenter  """"""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Create default mappings
-let g:NERDCreateDefaultMappings = 1
+" let g:NERDCreateDefaultMappings = 1
 
 " Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
+" let g:NERDSpaceDelims = 1
 
 " Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
+" let g:NERDCompactSexyComs = 1
 
 " Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
+" let g:NERDDefaultAlign = 'left'
 
 " Set a language to use its alternate delimiters by default
-let g:NERDAltDelims_java = 1
+" let g:NERDAltDelims_java = 1
 
 " Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+" let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
 
 " Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
+" let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
+" let g:NERDTrimTrailingWhitespace = 1
 
 " Enable NERDCommenterToggle to check all selected lines is commented or not 
-let g:NERDToggleCheckAllLines = 1
+" let g:NERDToggleCheckAllLines = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -186,6 +291,8 @@ function! s:show_documentation()
   endif
 endfunction
 
+let g:coc_global_extensions = ['coc-json',  'coc-git', 'coc-vimlsp', 'coc-tsserver', 'coc-sh', 'coc-go', 'coc-clangd', 'coc-snippets', 'coc-python', 'coc-vimlsp', 'coc-yaml', 'coc-todolist', 'coc-sql', 'coc-xml']
+
 " coc 配置 use <tab> for trigger completion and navigate to the next complete item
 inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
@@ -208,6 +315,12 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

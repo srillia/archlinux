@@ -702,23 +702,23 @@ configurenotify(XEvent *e)
 	int dirty;
 
 	/* TODO: updategeom handling sucks, needs to be simplified */
-	if (ev->window == root) {
-		dirty = (sw != ev->width || sh != ev->height);
-		sw = ev->width;
-		sh = ev->height;
-		if (updategeom() || dirty) {
-			drw_resize(drw, sw, bh);
-			updatebars();
-			for (m = mons; m; m = m->next) {
-				for (c = m->clients; c; c = c->next)
-					if (c->isfullscreen)
-						resizeclient(c, m->mx, m->my, m->mw, m->mh);
-				resizebarwin(m);
-			}
-			focus(NULL);
-			arrange(NULL);
-		}
-	}
+  if (ev->window == root) {
+    dirty = (sw != ev->width || sh != ev->height);
+    sw = ev->width;
+    sh = ev->height;
+    if (updategeom() || dirty) {
+      drw_resize(drw, sw, bh);
+      updatebars();
+      for (m = mons; m; m = m->next) {
+        for (c = m->clients; c; c = c->next)
+          if (c->isfullscreen)
+            resizeclient(c, m->mx, m->my, m->mw, m->mh);
+        resizebarwin(m);
+      }
+      focus(NULL);
+      arrange(NULL);
+    }
+  }
 }
 
 void

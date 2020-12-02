@@ -1,0 +1,8 @@
+{
+ "adapters": {
+    "java-debug-server": {
+      "name": "vscode-java",
+      "port": "${AdapterPort}"
+    }
+  }
+}
