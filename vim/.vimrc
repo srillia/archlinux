@@ -362,4 +362,3 @@ nmap <leader>rn <Plug>(coc-rename)
 "nmap <SPACE>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 "nmap <SPACE>f :cs find f <C-R>=expand("<cword>")<CR><CR>
 "nmap <SPACE>i :cs find i <C-R>=expand("<cword>")<CR><CR>
-"nmap <SPACE>d :cs find d <C-R>=expand("<cword>")<CR><CR>
