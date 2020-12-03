@@ -96,6 +96,7 @@ set wildmenu
 set wildmode=longest:list,full
 set wildignore=*.dll,*.exe,*.jpg,*.gif,*.png
 set ignorecase
+set updatetime=1
 " set smartcase
 
 "设置代码格式化规则
@@ -128,6 +129,9 @@ noremap <leader>fl  :r !figlet<SPACE>
 
 " autoformat
 noremap <silent> <leader>fm  :Autoformat<CR>
+
+" undotree
+nnoremap <silent> <leader>ud :UndotreeToggle<CR>
 
 " nvim
 let g:ruby_host_prog = '/home/srillia/.gem/ruby/2.7.0/bin/neovim-ruby-host'
