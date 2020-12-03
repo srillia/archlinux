@@ -22,8 +22,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 " airline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 
 " vim-floaterm
 Plug 'voldikss/vim-floaterm'
@@ -41,7 +41,7 @@ Plug 'tpope/vim-commentary'
 Plug 'mbbill/undotree'
 
 " fzf
-Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
+Plug 'junegunn/fzf.vim'
 
 " markdown
 Plug 'godlygeek/tabular'
@@ -50,10 +50,13 @@ Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
 
 " grep
-Plug 'dkprice/vim-easygrep'
+" Plug 'dkprice/vim-easygrep'
+
+" ack
+Plug 'mileszs/ack.vim'
 
 " vim spector
-Plug 'puremourning/vimspector'
+Plug 'puremourning/vimspector', { 'do': './install_gadget.py --enable-go'  }
 
 " On-demand lazy load
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!']  }
@@ -108,15 +111,16 @@ set expandtab       " expand tab to space
 autocmd FileType json,sh setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
 set scrolloff=20
-set pastetoggle=<F2>
+set pastetoggle=<F1>
 
 " 鼠标指针样式 和终端有关
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " self custom shortcuts
-noremap <silent> <leader>r :source /home/srillia/.vimrc<CR>
-noremap <silent> <leader>w :w !sudo tee %<CR>
+noremap <silent> <leader>sv :source /home/srillia/.vimrc<CR>:noh<CR>
+noremap <silent> <leader>sn :source /home/srillia/.config/nvim/init.vim<CR>:noh<CR>
+noremap <silent> <leader>sw :w !sudo tee %<CR>
 noremap <silent> <leader>y  "+y
 noremap <silent> <leader>p  "+p
 noremap <silent> <leader><leader>  :noh<CR>
@@ -124,13 +128,6 @@ noremap <leader>fl  :r !figlet<SPACE>
 
 " autoformat
 noremap <silent> <leader>fm  :Autoformat<CR>
-
-" This selects the next closest text object.
-map <SPACE> <Plug>(wildfire-fuel)
-
-" This selects the previous closest text object.
-vmap <C-SPACE> <Plug>(wildfire-water)
-
 
 " nvim
 let g:ruby_host_prog = '/home/srillia/.gem/ruby/2.7.0/bin/neovim-ruby-host'
@@ -143,19 +140,28 @@ nnoremap <leader>dd :call vimspector#Launch()<CR>
 nnoremap <leader>de :VimspectorReset<CR>
 
 "noremap <silent> <leader>dvs :call system('cp ~/.config/nvim/.vimspector.json .')<CR>
-nmap <F1> :CocCommand java.debug.vimspector.start<CR>
+nmap <leader>dj :CocCommand java.debug.vimspector.start<CR>
 
 
 " vim-maximizer
-nnoremap <silent> <leader>m :MaximizerToggle<CR>
+nnoremap <silent> <leader>mt :MaximizerToggle<CR>
 
 
 " wildfire
-nmap <leader>s <Plug>(wildfire-quick-select)
+" This selects the next closest text object.
+map <SPACE> <Plug>(wildfire-fuel)
+" This selects the previous closest text object.
+vmap <C-SPACE> <Plug>(wildfire-water)
+" quick-select
+nmap <leader>ws <Plug>(wildfire-quick-select)
 
 " md preview
 
 nmap <silent> <leader>mp :MarkdownPreview<CR>
+
+" ack
+cnoreabbrev Ack Ack!
+nnoremap <Leader>ak :Ack! -i<Space>
 
 
 " vista
@@ -171,18 +177,8 @@ set statusline+=%{NearestMethodOrFunction()}
 " you can add the following line to your vimrc
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
-" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
-" let g:vista#renderer#enable_icon = 1
-
-" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
-" let g:vista#renderer#icons = {
-" \   "function": "\uf794",
-" \   "variable": "\uf71b",
-" \  }
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-
-nnoremap <silent><leader>tv :Vista!!<CR>
-nnoremap <silent><leader>tf :Vista finder!<CR>
+nnoremap <silent><leader>vt :Vista!!<CR>
+nnoremap <silent><leader>vf :Vista finder!<CR>
 
 
 " lightline
@@ -218,8 +214,8 @@ let g:airline_theme = 'airline'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""     easygrep   """"""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let Grep_Default_Filelist = '*'
-nnoremap  <leader>g :Grep<SPACE>
+" let Grep_Default_Filelist = '*'
+" nnoremap  <leader>g :Grep<SPACE>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -269,8 +265,16 @@ noremap <leader>ff :FZF<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""      floaterm       """"""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap   <silent>   <F8>   :FloatermToggle<CR>
-tnoremap   <silent>   <F8>   <C-\><C-n>:FloatermToggle<CR>
+nnoremap   <silent>   <C-\>tt   :FloatermToggle<CR>
+tnoremap   <silent>   <C-\>tt   <C-\><C-n>:FloatermToggle<CR>
+nnoremap   <silent>   <C-\>to    :FloatermNew<CR>
+tnoremap   <silent>   <C-\>to    <C-\><C-n>:FloatermNew<CR>
+nnoremap   <silent>   <C-\>tp    :FloatermPrev<CR>
+tnoremap   <silent>   <C-\>tp    <C-\><C-n>:FloatermPrev<CR>
+nnoremap   <silent>   <C-\>tn    :FloatermNext<CR>
+tnoremap   <silent>   <C-\>tn    <C-\><C-n>:FloatermNext<CR>
+nnoremap   <silent>   <C-\>tk    :FloatermKill!<CR>
+tnoremap   <silent>   <C-\>tk    <C-\><C-n>:FloatermKill!<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

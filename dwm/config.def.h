@@ -50,7 +50,7 @@ static const Rule rules[] = {
 	{ "Firefox",  NULL,             NULL,       1 << 8,       0,           -1,        },
 	{ "Wine",     "tim.exe",        NULL,       0,            0,           -1,        },
 	{ "Wine",     "wechat.exe",     NULL,       0,            1,           -1,        },
-	{ "Wine",     "dingtalk.exe",   NULL,       0,            1,           -1,        },
+	{ "GetOpenFileName",     "GetOpenFileName",   NULL,       0,            1,           -1,        },
 };
 
 /* layout(s) */
