@@ -133,6 +133,9 @@ noremap <silent> <leader>fm  :Autoformat<CR>
 " undotree
 nnoremap <silent> <leader>ud :UndotreeToggle<CR>
 
+" fugitive
+nnoremap git :Git<SPACE>
+
 " nvim
 let g:ruby_host_prog = '/home/srillia/.gem/ruby/2.7.0/bin/neovim-ruby-host'
 
