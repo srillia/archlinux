@@ -1,0 +1,21 @@
+{
+  "configurations": {
+    "Perl - Launch": {
+      "adapter": "vscode-perl-debug",
+      "configuration": {
+        "name": "Perl: Launch current file",
+        "type": "perl",
+        "request": "launch",
+        "exec": "/usr/bin/env perl",
+        "execArgs": [],
+        "stopOnEntry": true,
+        "stopAtEntry": true,
+        "console": "externalTerminal",
+        "sessions": "single",
+        "debugOptions": [],
+        "cwd": "${cwd}",
+        "program": "${file}"
+      }
+    }
+  }
+}

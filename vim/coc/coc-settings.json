@@ -1,0 +1,5 @@
+{
+  "java.jdt.ls.vmargs": "-javaagent:/home/srillia/mine/vim/java/lombok.jar -Xbootclasspath/a:/home/srillia/mine/vim/java/lombok.jar",
+  "coc.source.around.firstMatch": false,
+  "coc.source.buffer.firstMatch": false
+}

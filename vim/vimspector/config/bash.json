@@ -1,0 +1,13 @@
+{
+  "configurations": {
+    "Bash - Launch": {
+      "adapter": "vscode-bash",
+      "configuration": {
+        "program": "${file}",
+        "args": [
+          "*${CommandLineArgs}"
+        ]
+      }
+    }
+  }
+}
