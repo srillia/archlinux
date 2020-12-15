@@ -6,8 +6,8 @@ export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 
-#while :; do
-#      ssh-agent dwm
-#      done
-#
+while :; do
+      ssh-agent dwm
+      done
+
 exec dwm
