@@ -41,7 +41,7 @@ Plug 'tpope/vim-commentary'
 Plug 'mbbill/undotree'
 
 " fzf
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf.vim'
 
 " markdown
 Plug 'godlygeek/tabular'
@@ -63,14 +63,14 @@ Plug 'puremourning/vimspector', { 'do': './install_gadget.py --enable-go'  }
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!']  }
 
 " Taglist
-Plug 'liuchengxu/vista.vim'
+" Plug 'liuchengxu/vista.vim'
 
 " vim-maximizer
 Plug 'szw/vim-maximizer'
 
 " surround
 Plug 'tpope/vim-surround' " type yskw' to wrap the word with '' or type cs'` to change 'word' to `word`
-" Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp
+Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp
 
 " vim-snippets
 Plug 'honza/vim-snippets'
@@ -79,13 +79,10 @@ Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
 
 " easymotion
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
 
 " multiple-cursors
 Plug 'terryma/vim-multiple-cursors'
-
-" ale
-" Plug 'dense-analysis/ale'
 
 " Initialize plugin system
 call plug#end()
@@ -128,20 +125,24 @@ set pastetoggle=<F1>
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
+" nvim config
+let g:python3_host_prog = '/usr/bin/python'
+
 " self custom shortcuts
 noremap <silent> <leader>sv :source /home/srillia/.vimrc<CR>:noh<CR>
 noremap <silent> <leader>sn :source /home/srillia/.config/nvim/init.vim<CR>:noh<CR>
 noremap <silent> <leader>sw :w !sudo tee %<CR>
-noremap <silent> <leader>y  "+y
-noremap <silent> <leader>p  "+p
+noremap <silent> <SPACE>y  "+y
+noremap <silent> <SPACE>p  "+p
 noremap <silent> <F2>  :noh<CR>
 noremap <leader>fl  :r !figlet<SPACE>
 
-" window move
-" nnoremap <C-J> <C-W><C-J>
-" nnoremap <C-K> <C-W><C-K>
-" nnoremap <C-L> <C-W><C-L>
-" nnoremap <C-H> <C-W><C-H>
+" insert move
+" imap <C-h> <C-o>h
+" imap <C-j> <C-o>j
+" imap <C-k> <C-o>k
+" imap <C-l> <C-o>l
+
 
 nnoremap <C-Left> <C-W><
 nnoremap <C-Down> <C-W>-
@@ -156,34 +157,37 @@ nnoremap <leader>tp :tabp<CR>
 " autoformat
 noremap <silent> <leader>fm  :Autoformat<CR>
 
+" far
+let g:far#enable_undo=1
+noremap  <leader>frr  :Farr<CR>
+noremap  <leader>frd  :Fardo<CR>
+noremap  <leader>fru  :Farundo<CR>
+
+
 " undotree
 nnoremap <silent> <leader>ud :UndotreeToggle<CR>
 
 " fugitive
-nnoremap git :Git<SPACE>
+nnoremap git :Git
 
 " easymotion disturbs diagnostics
-let g:easymotion#is_active = 0
-function! EasyMotionCoc() abort
-    if EasyMotion#is_active()
-        let g:easymotion#is_active = 1
-        silent! CocDisable
-    else
-        if g:easymotion#is_active == 1
-            let g:easymotion#is_active = 0
-            silent! CocEnable
-        endif
-    endif
-endfunction
-autocmd TextChanged,CursorMoved * call EasyMotionCoc()
+" let g:easymotion#is_active = 0
+" function! EasyMotionCoc() abort
+"     if EasyMotion#is_active()
+"         let g:easymotion#is_active = 1
+"         silent! CocDisable
+"     else
+"         if g:easymotion#is_active == 1
+"             let g:easymotion#is_active = 0
+"             silent! CocEnable
+"         endif
+"     endif
+" endfunction
+" autocmd TextChanged,CursorMoved * call EasyMotionCoc()
 
 " nvim
 let g:ruby_host_prog = '/home/srillia/.gem/ruby/2.7.0/bin/neovim-ruby-host'
 
-" ale
-" let g:ale_linters = {
-"     \ 'sh': ['language_server'],
-"     \ }
 
 " vimspector
 let g:vimspector_enable_mappings = 'HUMAN'
@@ -211,13 +215,7 @@ nmap <leader>dj :CocCommand java.debug.vimspector.start<CR>
 nnoremap <silent> <leader>mt :MaximizerToggle<CR>
 
 
-" wildfire
-" This selects the next closest text object.
-" map <SPACE> <Plug>(wildfire-fuel)
-" This selects the previous closest text object.
-" vmap <C-SPACE> <Plug>(wildfire-water)
-" quick-select
-" nmap <leader>ws <Plug>(wildfire-quick-select)
+nmap <leader>ws <Plug>(wildfire-quick-select)
 
 " md preview
 
@@ -230,22 +228,23 @@ nnoremap <Leader>ak :Ack! -i<Space>
 
 
 " vista
-function! NearestMethodOrFunction() abort
-    return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
+" function! NearestMethodOrFunction() abort
+"     return get(b:, 'vista_nearest_method_or_function', '')
+" endfunction
 
-let g:vista_default_executive = 'coc'
+" let g:vista_default_executive = 'coc'
+" let g:vista#renderer#enable_icon = 0
 
-set statusline+=%{NearestMethodOrFunction()}
+" set statusline+=%{NearestMethodOrFunction()}
 
 " By default vista.vim never run if you don't call it explicitly.
 "
 " If you want to show the nearest function in your statusline automatically,
 " you can add the following line to your vimrc
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+" autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
-nnoremap <silent><leader>vt :Vista!!<CR>
-nnoremap <silent><leader>vf :Vista finder!<CR>
+" nnoremap <silent><leader>vt :Vista!!<CR>
+" nnoremap <silent><leader>vf :Vista finder!<CR>
 
 
 " lightline
@@ -332,23 +331,30 @@ noremap <leader>ff :FZF<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""      floaterm       """"""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap   <silent>   <C-\>t   :FloatermToggle<CR>
-tnoremap   <silent>   <C-\>t   <C-\><C-n>:FloatermToggle<CR>
-nnoremap   <silent>   <C-\>o    :FloatermNew<CR>
-tnoremap   <silent>   <C-\>o    <C-\><C-n>:FloatermNew<CR>
-nnoremap   <silent>   <C-\>p    :FloatermPrev<CR>
-tnoremap   <silent>   <C-\>p    <C-\><C-n>:FloatermPrev<CR>
-nnoremap   <silent>   <C-\>n    :FloatermNext<CR>
-tnoremap   <silent>   <C-\>n    <C-\><C-n>:FloatermNext<CR>
-nnoremap   <silent>   <C-\>k    :FloatermKill!<CR>
-tnoremap   <silent>   <C-\>k    <C-\><C-n>:FloatermKill!<CR>
-tnoremap   <silent>   <C-\>b    <C-\><C-n>
+nnoremap   <silent>   <C-\><C-t>    :FloatermToggle<CR>
+tnoremap   <silent>   <C-\><C-t>    <C-\><C-n>:FloatermToggle<CR>
+" open from cur file
+nnoremap   <silent>   <C-\><C-o>    :FloatermNew! cd %:p:h<CR>
+tnoremap   <silent>   <C-\><C-o>    <C-\><C-n>:FloatermHide<CR>:FloatermNew! cd %:p:h<CR>
+nnoremap   <silent>   <C-\><C-b>    :FloatermPrev<CR>
+tnoremap   <silent>   <C-\><C-b>    <C-\><C-n>:FloatermPrev<CR>
+nnoremap   <silent>   <C-\><C-f>    :FloatermNext<CR>
+tnoremap   <silent>   <C-\><C-f>    <C-\><C-n>:FloatermNext<CR>
+
+if has('nvim')
+nnoremap   <silent>   <C-\><C-k>    :FloatermKill<CR>
+tnoremap   <silent>   <C-\><C-k>    <C-\><C-n>:FloatermKill<CR>:FloatermLast<CR>
+endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""      coc.nvim       """"""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:coc_global_extensions = ['coc-json',  'coc-git', 'coc-vimlsp', 'coc-tsserver',  'coc-go', 'coc-clangd', 'coc-snippets', 'coc-python', 'coc-vimlsp', 'coc-yaml', 'coc-todolist', 'coc-sql', 'coc-xml']
+nnoremap  <leader>cl :CocList<SPACE>
+nnoremap  <leader>cc :CocCommand<SPACE>
+
+
+let g:coc_global_extensions = ['coc-json',  'coc-git', 'coc-vimlsp', 'coc-tsserver',  'coc-go', 'coc-clangd', 'coc-snippets', 'coc-pyright', 'coc-vimlsp', 'coc-yaml',  'coc-sql', 'coc-xml', 'coc-fzf-preview']
 
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -372,6 +378,11 @@ inoremap <silent><expr> <Tab>
             \ coc#refresh()
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+"                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 
 " Use `[g` and `]g` to navigate diagnostics
@@ -475,8 +486,35 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent><nowait> <space>r  :<C-u>CocListResume<CR>
 
+" coc-java
+nnoremap <silent><nowait> <leader>ju  :CocCommand java.projectConfiguration.update<CR>
+
+" coc-fzf-preview
+" add fish support
+let g:fzf_preview_if_binary_command = "string match 'binary' (file --mime {})"
+" The theme used in the bat preview
+let $FZF_PREVIEW_PREVIEW_BAT_THEME = 'Monokai Extended'
+
+nmap <leader>f [fzf-p]
+xmap <leader>f [fzf-p]
+
+nnoremap <silent> [fzf-p]p     :<C-u>CocCommand fzf-preview.FromResources project_mru git<CR>
+nnoremap <silent> [fzf-p]gs    :<C-u>CocCommand fzf-preview.GitStatus<CR>
+nnoremap <silent> [fzf-p]ga    :<C-u>CocCommand fzf-preview.GitActions<CR>
+nnoremap <silent> [fzf-p]b     :<C-u>CocCommand fzf-preview.Buffers<CR>
+nnoremap <silent> [fzf-p]B     :<C-u>CocCommand fzf-preview.AllBuffers<CR>
+nnoremap <silent> [fzf-p]o     :<C-u>CocCommand fzf-preview.FromResources buffer project_mru<CR>
+nnoremap <silent> [fzf-p]<C-o> :<C-u>CocCommand fzf-preview.Jumps<CR>
+nnoremap <silent> [fzf-p]g;    :<C-u>CocCommand fzf-preview.Changes<CR>
+nnoremap <silent> [fzf-p]/     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'"<CR>
+nnoremap <silent> [fzf-p]*     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
+nnoremap          [fzf-p]gr    :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
+xnoremap          [fzf-p]gr    "sy:CocCommand   fzf-preview.ProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
+nnoremap <silent> [fzf-p]t     :<C-u>CocCommand fzf-preview.BufferTags<CR>
+nnoremap <silent> [fzf-p]q     :<C-u>CocCommand fzf-preview.QuickFix<CR>
+nnoremap <silent> [fzf-p]l     :<C-u>CocCommand fzf-preview.LocationList<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""   cscope  (use coc.nvim go to definition,deprecated)  """""""""""""""""

@@ -9,5 +9,5 @@ export QT_IM_MODULE=ibus
 while :; do
       ssh-agent dwm
       done
-
+export load_fish_path=true
 exec dwm
